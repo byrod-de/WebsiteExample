@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Final Earth Build Calculator</title>
+  <title>Test</title>
   <style>
     .nav {background-color: #4F4D53; 
     height: 48px;
@@ -10,129 +10,53 @@
 </style>
 </head>
 <body>
-<h3>We moved! Find the new and improved version here <a href="https://final-earth-tools.netlify.app/">https://final-earth-tools.netlify.app/</a>  This version will no longer be updated.</h3>
-<br><br>
+<br/><br/>
 <div class="nav">
-<h2 class="pagetitle"> Axis Build Calculator </h2>
-</div>
-<p>Enter your funds below and select your build to see how many units you can buy. </p>
-
-<form id="frm1">
+<h2 class="pagetitle"> Test API Call </h2>
+<form id="form1">
   <input type="radio" id="inf" name="unit" value="inf">
-  <label for="inf">Infantry (Support heavy)</label><br>
-  <input type="radio" id="ainf" name="unit" value="ainf">
-  <label for="ainf">Infantry (Pure Assuault + medic)</label><br>
- <input type="radio" id="sinf" name="unit" value="sinf">
-  <label for="sinf">Infantry (Pure Support + medic)</label><br>
-  <input type="radio" id="tungsbrem" name="unit" value="tungsbrem">
-  <label for="tungsbrem">Tungs/Brem (Tanks Anti-Air)</label><br>
-  <input type="radio" id="suireb" name="unit" value="suireb">
-  <label for="suireb">Suirebs</label><br>
-  <input type="radio" id="vod" name="unit" value="vod">
-  <label for="vod">Vodniks/MLR (Jeeps Anti-Infantry)</label><br>
-  <input type="radio" id="blk" name="unit" value="blk">
-  <label for="vod">Black Eagles/Brem</label><br>
-   <input type="radio" id="t98" name="unit" value="t98">
-  <label for="t98">Type 98/Brem</label><br>
+  <label for="inf">Infantry (Support heavy)</label><br/>
+
   
   Funds: <input type="text" name="funds" <br><br>
 </form> 
-<br>
-<button onclick="myFunction()">Submit</button>
-<br>
+<button onclick="userSubmit()">Submit</button>
+<br/>
 <p id="demo"></p> <br>
-<p id="demo2"></p>
-<br><br><br> 
-<a href="https://www.freecounterstat.com" title="free web page counters with stats"><img style="height:20px; width:85px;" src="https://counter8.stat.ovh/private/freecounterstat.php?c=5mfcnunjlgm9hbygamt1mxakzqntfm4t" border="0"></a>
-
-<br><br>
-<p> *Please note this an early version so it may be a bit buggy. Let Natty_Boh know about any issues. Thanks to Jorn and Synth for build ratios.  </p>
+<br/>
+<p> *Please note this an early version. Let Byrod know about any issues.</p>
 
 
 
 <script>
-function myFunction() {
-  var x = document.getElementById("frm1");
-  var text = "";
+function userSubmit() {
+  var x = document.getElementById("form1");
+  var outputDemo = "";
   var i;
   for (i = 0; i < x.length ;i++) {
 	if (document.getElementById('inf').checked) {
      var support = 13 * 125000
      var assault = 6 * 100000
      var medic = 1 * 250000
-     var total = support + assault + medic;
-     var number = (x.elements[i].value.replace(/,/g, "")) / total
-     var text = Math.floor(number * 13) + " support<br>" + Math.floor(number * 6) + " 	assault<br>" + Math.floor(number * 1) + " medic<br>" 
+     
+     var number = (x.elements[i].value.replace(/,/g, ""))
+     var outputDemo = number  + " support<br>"
 	}
-    if (document.getElementById('tungsbrem').checked) {
-       var text = tanks(x, i,  3500000, "tungs")
-      
-	}
-    if (document.getElementById('suireb').checked) {
-      var sui = 1 * 150000
-      var reb = 4 * 35000
-      var total = sui + reb;
-      var number = (x.elements[i].value.replace(/,/g, "")) / total
-      var text = Math.floor(number * 1) + " suicide bombers <br>" + Math.floor(number * 4) + " 	rebels <br>" 
-      }
-      if (document.getElementById('vod').checked) {
-      var vod = 3 * 300000
-      var mlr = 1 * 3000000
-      var total = vod + mlr;
-      var number = (x.elements[i].value.replace(/,/g, "")) / total
-      var text = Math.floor(number * 3) + " vodnik <br>" + Math.floor(number * 1) + " 	MLR <br>" 
-      }
- 
-	 if (document.getElementById('blk').checked) {
-       var text = tanks(x, i,  8000000, "black eagles")
-      
-	}
-    if (document.getElementById('t98').checked) {
-       var text = tanks(x, i,  2150000, "type 98")
-      
-	}
-    if (document.getElementById('ainf').checked) {
-      var assault = 19 * 100000
-      var medic = 1 * 250000
-      var total = assault + medic;
-      var number = (x.elements[i].value.replace(/,/g, "")) / total
-      var text = Math.floor(number * 19) + " assault <br>" + Math.floor(number * 1) + " medic <br>" 
-      }
-    if (document.getElementById('sinf').checked) {
-      var support = 19 * 125000
-      var medic = 1 * 250000
-      var total = support + medic;
-      var number = (x.elements[i].value.replace(/,/g, "")) / total
-      var text = Math.floor(number * 19) + " support <br>" + Math.floor(number * 1) + " medic <br>" 
-      }
-   
   }
 
-    document.getElementById("demo").innerHTML = text;
+    document.getElementById("demo").innerHTML = outputDemo;
  }
-  
-  function tanks(x, i, unitcost, unitname) {
-     var funds = x.elements[i].value.replace(/,/g, "")
-     var tungcost = unitcost
-     var bremcost = 5000000
-     var total = tungcost * 19 + bremcost * 1;
-     var number = funds / total
-     
-     var tungcount = Math.floor(number*19)
-     var bremcount = Math.floor(number)
-     var tungprice = tungcount * tungcost
-     var bremprice = bremcount * bremcost
-     var totalprice = bremprice + tungprice
-     var leftover = funds- totalprice
-
-     if (leftover >= tungcost) {
-          return (tungcount-1) + " "+ unitname + " <br>" + (bremcount+1) + " 	brem <br>" 
-
-     } else {
-       return (tungcount-2) + " " + unitname + "<br>" + (bremcount+1) + " 	brem <br>"
-     } 
-  } 
-
+ 
+ 
+	var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("POST", "Your Rest URL Here", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("Your JSON Data Here");
 
 </script>
 
