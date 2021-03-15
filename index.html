@@ -34,7 +34,10 @@
   <button onclick="userSubmit()">Submit</button>  
   
   <br/>
+    <p id="debug"></p> <br/>
+
   <p id="output"></p> <br/>
+
 </div>
 
 
@@ -42,8 +45,47 @@
 function userSubmit() {
   var x = document.getElementById("userForm");
   var outputDemo = document.getElementById("trustedkey").value;
-  document.getElementById("output").innerHTML = outputDemo;
+  document.getElementById("debug").innerHTML = outputDemo;
+  apiCall(outputDemo);
  }
+ 
+ 
+ function apiCall(key) {
+	var request = new XMLHttpRequest()
+
+	request.open('GET', 'https://api.torn.com/faction/?selections=crimes&key=' + key, true)
+	request.onload = function () {
+	  // Begin accessing JSON data here
+	  var data = JSON.parse(this.response)
+	  
+	  //console.log(data)
+
+	  if (request.status >= 200 && request.status < 400) {
+		//document.getElementById("output").innerHTML = JSON.stringify(data);
+		var table = '<table>'
+		
+		for( var id in data.crimes ){
+			var crime = data.crimes[id]
+			if (crime.crime_id === 8) {
+				if (crime.initiated === 1) {
+					//console.log( + ": " + crime.crime_name)
+					var ts = new Date(crime.time_completed)
+					table = table + '<tr><td>' + ts.toISOString() + '</td><td>' + crime.crime_name + '</td></tr>'
+				}
+			}
+		}
+		
+		table = table + '</table>'
+		document.getElementById("output").innerHTML = table
+		
+        console.log('-------------------')
+	  } else {
+		console.log('error')
+	  }
+}
+
+request.send()
+}
 </script>
 
 </body>
