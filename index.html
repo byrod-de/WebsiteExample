@@ -42,7 +42,7 @@
 	function userSubmit() {
 		var x = document.getElementById("userForm");
 		var outputDemo = document.getElementById("trustedkey").value;
-		document.getElementById("debug").innerHTML = outputDemo;
+		//document.getElementById("debug").innerHTML = outputDemo;
 		apiCall(outputDemo);
 	}
  
@@ -109,7 +109,7 @@
 				  + '<th>Date</th>'
 				  + '<th>Crime Type</th>'
 				  + '<th>Participants</th>'
-				  + '<th>Money Gained</th>'
+				  + '<th>Money Gained<br />per member</th>'
 				  + '<th>Respect Gained</th>'
 				  + '</tr></thead><tbody>';
 		
@@ -143,7 +143,7 @@
 								  +'<td>' + ts.toISOString() + '</td>'
 								  +'<td>' + crime.crime_name + '</td>'
 								  +'<td>' + participants + '</td>'
-								  +'<td>' + crime.money_gain + '</td>'
+								  +'<td>' + crime.money_gain.toLocaleString() +'<br />'+ (crime.money_gain / 5).toLocaleString() + '</td>'
 								  +'<td>' + crime.respect_gain + '</td>'
 								  +'</tr>';
 				}
