@@ -7,21 +7,44 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+
 </head>
-<body style="background-color:#0096a3;">
+<body style="font-family: Roboto, sans-serif;">
 
 <div class="container-fluid">
   <h1>Torn API Testing <small>Something about PA Results</small></h1>
     <div class="row">
     <div class="col-sm-2" style="background-color:#FF8F00;"><b>Vulpes Vulpes</b></div>
-    <div class="col-sm-8" style="background-color:#00707a;"><i>Faction Tools</i></div>
+    <div class="col-sm-8" style="background-color:#00707a;"><small>Faction Tools</small></div>
   </div>
   
   <blockquote>
-    <p>Blablabla quote.</p>
-    <footer>Mud</footer>
+    <p>
+	Everything not saved will be lost.</p>
+    <footer>Nintendo 'Quit Screen' message</footer>
   </blockquote>
+  
+  <!---- Here comes the content *sings* -->
+  <form id="userForm">
+	API Key: <input type="password" id="trustedkey" name="trustedkey" <br/><br/>
+  
+  </form>
+  <br/>
+  <button onclick="userSubmit()">Submit</button>  
+  
+  <br/>
+  <p id="output"></p> <br/>
 </div>
+
+
+<script>
+function userSubmit() {
+  var x = document.getElementById("userForm");
+  var outputDemo = document.getElementById("trustedkey").value;
+  document.getElementById("output").innerHTML = outputDemo;
+ }
+</script>
 
 </body>
 </html>
