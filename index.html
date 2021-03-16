@@ -15,8 +15,8 @@
 <div class="container-fluid">
 	<h1>Torn API Testing <small>Something about PA Results</small></h1>
 	<div class="row">
-	<div class="col-sm-2" style="background-color:#FF8F00;"><b>Vulpes Vulpes</b></div>
-	<div class="col-sm-8" style="background-color:#00707a;"><small>Faction Tools</small></div>
+	<div class="col-sm-2" style="background-color:#FF8F00;"><b>Faction Tools</b></div>
+	<div class="col-sm-8" style="background-color:#00707a;"><small>Vulpes Vulpes</small></div>
 	</div>
   
 	<blockquote>
@@ -56,7 +56,7 @@
 			// Begin accessing JSON data here
 			var basicData = JSON.parse(this.response);
 	  
-			//console.log(basicData);
+			console.log(basicData);
 
 			if (request.status >= 200 && request.status < 400) {
 				membersList = parseBasic(basicData, 'summary');
