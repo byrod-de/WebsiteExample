@@ -33,7 +33,7 @@
 	</form>
 	<br/>
 	<button onclick="userSubmit()">Submit</button>  
-  
+  	<br/>
 	<br/>
 	<p id="debug"></p> <br/>
 	<p id="summary"></p> <br/>
@@ -47,7 +47,7 @@
 		var outputDemo = document.getElementById("trustedkey").value;
 		document.getElementById("debug").innerHTML = '<small>Debug only: API key used (to be removed after release): ' + outputDemo + '</small>';
 		apiCall(outputDemo);
-		callTornAPI(outputDemo, 'faction', 'basic');
+		callTornAPI(outputDemo, 'faction', 'basic,crimes');
 	}
 	
 	function callTornAPI(key, part, selection) {
