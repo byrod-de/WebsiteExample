@@ -26,9 +26,9 @@
   
 	<!---- Here comes the content *sings* -->
 	<form id="userForm">
-		[ ] Jan 2021<br />
-		[ ] Feb 2021<br />
-		[ ] Mar 2021<br />
+		<pre>[ ] Jan 2021</pre><br />
+		<pre>[ ] Feb 2021</pre><br />
+		<pre>[ ] Mar 2021</pre><br />
 		API Key: <input type="password" id="trustedkey" name="trustedkey" <br/><br/>
 	</form>
 	<br/>
@@ -64,9 +64,7 @@
 			} else {
 				console.log('API not available.');
 			}
-			
 		}
-
 		request.send();
 	}
  
@@ -87,14 +85,10 @@
 				console.log(membersList);
 			} else {
 				console.log('error 1');
-			}
-			
+			}	
 		}
-
 		request.send();
-	
-	
-	
+
 		var request = new XMLHttpRequest();
 
 		request.open('GET', 'https://api.torn.com/faction/?selections=crimes&key=' + key, true);
@@ -110,13 +104,13 @@
 				console.log('error 2');
 			}
 		}
-
 		request.send();
 	}
 	
 	function parseBasic (basicData, element) {
-	
+		
 		var membersList = '';
+		
 		for( var id in basicData.members ){
 			var member = basicData.members[id];
 			//console.log(member.name + ' [' + id + ']');
@@ -124,7 +118,6 @@
 		}
 		
 		//document.getElementById(element).innerHTML = membersList;
-		
 		return membersList;
 	}
 
@@ -133,7 +126,7 @@
 				  + '<th>Date</th>'
 				  + '<th>Crime Type</th>'
 				  + '<th>Participants</th>'
-				  + '<th>Money Gained<br />per member</th>'
+				  + '<th>Money Gained<br/>per member</th>'
 				  + '<th>Respect Gained</th>'
 				  + '</tr></thead><tbody>';
 		
@@ -164,12 +157,12 @@
 						
 					
 					table = table + '<tr class="'+crimeResult+'">'
-								  +'<td>' + ts.toISOString() + '</td>'
-								  +'<td>' + crime.crime_name + '</td>'
-								  +'<td>' + participants + '</td>'
-								  +'<td>' + crime.money_gain.toLocaleString() +'<br />'+ (crime.money_gain / 5).toLocaleString('en-US') + '</td>'
-								  +'<td>' + crime.respect_gain + '</td>'
-								  +'</tr>';
+							+'<td>' + ts.toISOString() + '</td>'
+							+'<td>' + crime.crime_name + '</td>'
+							+'<td>' + participants + '</td>'
+							+'<td>' + crime.money_gain.toLocaleString() +'<br />'+ (crime.money_gain / 5).toLocaleString('en-US') + '</td>'
+							+'<td>' + crime.respect_gain + '</td>'
+							+'</tr>';
 				}
 			}
 		}
