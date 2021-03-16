@@ -18,7 +18,7 @@
 	<div class="col-sm-2" style="background-color:#FF8F00;"><b>Faction Tools</b></div>
 	<div class="col-sm-8" style="background-color:#00707a;"><small>Vulpes Vulpes</small></div>
 	</div>
-  
+  	Quote of the month:<br />
 	<blockquote>
 		<p>Everything not saved will be lost.</p>
 		<footer>Nintendo 'Quit Screen' message</footer>
@@ -26,6 +26,9 @@
   
 	<!---- Here comes the content *sings* -->
 	<form id="userForm">
+		[ ] Jan 2021<br />
+		[ ] Feb 2021<br />
+		[ ] Mar 2021<br />
 		API Key: <input type="password" id="trustedkey" name="trustedkey" <br/><br/>
 	</form>
 	<br/>
@@ -42,8 +45,29 @@
 	function userSubmit() {
 		var x = document.getElementById("userForm");
 		var outputDemo = document.getElementById("trustedkey").value;
-		//document.getElementById("debug").innerHTML = outputDemo;
+		document.getElementById("debug").innerHTML = '<small>Debug only: API key used (to be removed after release): ' + outputDemo + '</small>';
 		apiCall(outputDemo);
+		callTornAPI(outputDemo, 'faction', 'basic');
+	}
+	
+	function callTornAPI(key, part, selection) {
+		var request = new XMLHttpRequest();
+		var membersList = '';
+
+		request.open('GET', 'https://api.torn.com/' + part + '/?selections=' + selection + '&key=' + key, true);
+		request.onload = function () {
+			// Begin accessing JSON data here
+			var jsonData = JSON.parse(this.response);
+	  			
+			if (request.status >= 200 && request.status < 400) {
+				console.log(jsonData);
+			} else {
+				console.log('API not available.');
+			}
+			
+		}
+
+		request.send();
 	}
  
  
